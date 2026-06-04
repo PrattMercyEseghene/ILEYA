@@ -1,60 +1,59 @@
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-
-public class BookTest {
+public class BookSystemTest{
 
     @Test
-    public void addBook() {
-        String bookName = "Cat book";
-        Book book = new Book();
-        book.addBook(bookName);
-        List<String> allBooks = book.getAllBooks();
-        assertEquals(bookName, allBooks.getFirst());
+    public void testToAddBookToOurLibrary(){
+        String bookName= "farmer's Pride";
+        String expected= "book Added Successfully";
+        String actual= BookSystem.addBook(bookName);
+        assertEquals(expected, actual);
     }
-
     @Test
-    public void removeBook() {
-        String catBook = "Cat book";
-        String dogBook = "Dog book";
-        Book book = new Book();
-        book.addBook(catBook);
-        book.addBook(dogBook);
-
-        book.removeBook(dogBook);
-
-        List<String> allBooks = book.getAllBooks();
-
-        assertEquals(1, allBooks.size());
-        assertEquals(catBook, allBooks.getFirst());
+    public void testNotToAddBookToOurLibraryIfBookAlreadyExist(){
+        String bookName = "farmer's pride";
+        BookSystem.library.add(bookName);
+        String expected = "book already exists";
+        String actual = BookSystem.addBook(bookName);
+        assertEquals(expected, actual);
+        
     }
-
     @Test
-    public void updateBook() {
-        String book1 = "Cat book";
-        String book2 = "Dog book";
-        Book book = new Book();
-        book.addBook(book1);
-
-        book.updateBook(book1, book2);
-
-        List<String> allBooks = book.getAllBooks();
-        assertEquals(book2, allBooks.getFirst());
+    public void testToRemoveBookFromOurLibrary(){
+    
+        String bookName = "farmer's Pride";
+        BookSystem.library.add(bookName);
+        String expected = "book Removed Successfully";
+        String actual = BookSystem.removeBook(bookName);
+        assertEquals(expected, actual);
     }
-
     @Test
-    public void getAllBooks() {
-        String catBook = "Cat book";
-        String dogBook = "Dog book";
-        Book book = new Book();
-        book.addBook(catBook);
-        book.addBook(dogBook);
-
-        List<String> allBooks = book.getAllBooks();
-        assertEquals(2, allBooks.size());
-
+    public void testNotToRemoveBookFromOurLibraryIfBookDoesNotExist(){
+        String bookName = "farmer's pride";
+        String expected = "book does not exists";
+        String actual = BookSystem.removeBook(bookName);
+        assertEquals(expected, actual);
     }
+    @Test
+    public void testThatBookWasSuccessfullyUpdated(){
+    
+        BookSystem.library.add("farmer's bride");
+        
+        String bookName = "farmer's bride";
+        String newBookName = "farmer's book";
+        String expected = "books updated successfully";
+        String actual   = BookSystem.updateBook(bookName, newBookName);
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testThatBookDoesNotExist(){
+        
+        String bookName = "farmer's bride";
+        String newBookName = "farmer's book";
+        String expected = "book does not exist";
+        String actual   = BookSystem.updateBook(bookName, newBookName);
+        assertEquals(expected, actual);
+    }
+   
 }
