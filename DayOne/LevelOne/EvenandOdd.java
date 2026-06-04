@@ -1,4 +1,6 @@
-public void main() {
+import java.util.Arrays;
+public class EvenandOdd{
+public static void main(String[]args) {
 
     int[] numbers = {45, 60, 3, 10, 9, 22};
 
@@ -6,8 +8,6 @@ public void main() {
 }
 
 public static void getEvenandOdd(int[] numbers) {
-
-    int[][] parentArry = new int[2][3];
 
     int[] oddArray = new int[3];
     int[] evenArray = new int[3];
@@ -26,8 +26,9 @@ public static void getEvenandOdd(int[] numbers) {
         }
     }
 
-    parentArry[0] = oddArray;
-    parentArry[1] = evenArray;
+    int[][] parentArry = {oddArray, evenArray};
 
-    IO.println(Arrays.deepToString(parentArry));
+    System.out.println(Arrays.deepToString(parentArry));
+}
+
 }

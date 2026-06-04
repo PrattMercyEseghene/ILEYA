@@ -1,4 +1,5 @@
-public void main() {
+public class Palindromic{
+public static void main(String[]args) {
 
     int[] numbers = {45, 0, 8, 0, 45, 34};
 

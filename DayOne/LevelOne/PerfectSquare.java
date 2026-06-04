@@ -1,4 +1,6 @@
-public void main() {
+import java.util.ArrayList;
+public class PerfectSquare{
+public static void main(String[]args) {
 
     int[] numbers = {4, 7, 9, 10, 16, 18};
 
@@ -6,14 +8,14 @@ public void main() {
 }
 
 public static void perfectSquare(int[] numbers) {
-    List<Integer> perfectSqaure = new ArrayList<>();
+    ArrayList<Integer> perfectSquare = new ArrayList<>();
 
     for (int number : numbers){
        int root = (int)Math.sqrt(number);
        if (number == (root * root)){
-            perfectSqaure.add(number);
+            perfectSquare.add(number);
        }
     }
 
-    System.out.println(perfectSqaure);
+    System.out.println(perfectSquare);
 }
